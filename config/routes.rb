@@ -27,6 +27,15 @@ Rails.application.routes.draw do
   resources :supplies
   resources :users
 
+  require 'api_constraints'
+  namespace :api, defaults: { format: :json } do
+    # API versioning
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
+      # Resources
+      resources :users, :only => [:show]
+    end
+  end
+
   # Example resource route with options:
   #   resources :products do
   #     member do
@@ -59,20 +68,4 @@ Rails.application.routes.draw do
   #   end
   #   resources :posts, concerns: :toggleable
   #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  require 'api_constraints'
-
-  namespace :api,
-            defaults: { format: :json },
-            constraints: { subdomain: 'api' },
-            path: '/' do
-    # API versioning
-    scope module: :v1,
-          constraints: ApiConstraints.new(version: 1, default: true) do
-
-    end
-
-    # resources :products
-  end
 end
