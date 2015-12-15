@@ -1,0 +1,46 @@
+<% if @product.errors.any? %>
+<div class="row">
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@product.errors.count, "error") %> prohibited
+      this product from being saved:
+    </h2>
+    <ul>
+      <% @product.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<% end %>
+
+<%= form_for @product do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: "form-control" %>
+  </p>
+
+  <p>
+    <%= f.label :img_file %><br>
+    <%= f.file_field :img_file, accept: 'image/png,image/gif,image/jpeg', class: "form-control" %>
+  </p>
+
+  <p>
+    <%= f.label :categories %><br>
+    <%= f.collection_select(:categories, Category.all, :id, :name,
+      {selected: @product.categories.map(&:id)},
+      {multiple: true, prompt: false, class: "form-control"})
+    %>
+  </p>
+
+  <p>
+    <%= f.label :ingredients %><br>
+    <%= f.collection_select(:ingredients, Supply.all, :id, :name,
+    {selected: @product.supplies.map(&:id)},
+    {multiple: true, prompt: false, class: "form-control"}) %>
+  </p>
+  <p>
+    <%= link_to "Back", products_path, class: "btn btn-default" %>
+    <%= f.submit nil, class: "btn btn-primary"%>
+  </p>
+<% end %>

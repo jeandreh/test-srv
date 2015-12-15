@@ -1,0 +1,94 @@
+<h1>Product Details</h1>
+
+<% if flash[:errors] && flash[:errors].any? %>
+<div id="error_explanation" class="row">
+  <div class="col-lg-12">
+    <h2>
+      <%= pluralize(flash[:errors].count, "error") %>
+    </h2>
+    <ul>
+      <% flash[:errors].each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<% end %>
+
+<div class="row">
+  <div class="col-lg-12">
+    <strong>Name: </strong> <%= @product.name %>
+  </div>
+</p>
+
+<div class="row">
+  <div class="col-lg-12">
+  	<h2>Categories</h2>
+  	<ul>
+  		<% @product.categories.each do |cat| %>
+  		<li><%= cat.name %></li>
+  		<% end %>
+  	</ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+  	<h2>Ingredients</h2>
+  	<ul>
+  		<% @product.supplies.each do |sup| %>
+  		<li><%= sup.name %></li>
+  		<% end %>
+  	</ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+  	<h2>Retail Options</h2>
+    	<%= link_to "Add Option",
+        new_product_retail_option_path(@product),
+        class: 'btn btn-primary' %>
+      <br><br>
+      <% if @product.retail_options.any? %>
+      <table class="table table-striped">
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>&nbsp;</th>
+        </tr>
+        <% @product.retail_options.each do |r| %>
+        <tr>
+         <td><%= r.name %></td>
+         <td><%= r.description %></td>
+         <td><%= r.price %></td>
+         <td>
+            <%= link_to "Edit",
+              edit_product_retail_option_path(@product,r),
+              class: 'btn btn-default btn-xs' %>
+            <%= link_to "Remove",
+              product_retail_option_path(@product,r),
+              method: :delete,
+              class: 'btn btn-default btn-xs',
+              data: { confirm: 'Are you sure?' } %>
+         </td>
+        </tr>
+        <% end %>
+      </table>
+      <% else %>
+      <p>No retail options registered.</p>
+      <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+  	<%= link_to "Back", products_path, class: 'btn btn-default' %>
+  	<%= link_to "Edit", edit_product_path(@product), class: 'btn btn-primary' %>
+  	<%= link_to "Remove", product_path(@product),
+  				method: :delete,
+          class: 'btn btn-danger',
+  				data: { confirm: 'Are you sure?' } %>
+  </div>
+</div>

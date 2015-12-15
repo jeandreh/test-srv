@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cloudpos</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <%= link_to "Cloud POS", '#', id: "logo" %>
+        <% if logged_in? %>
+        <nav>
+          <ul class="nav navbar-nav navbar-left">
+            <li><%= link_to "Products", products_path %></li>
+            <li><%= link_to "Categories",  categories_path  %></li>
+            <li><%= link_to "Supplies", supplies_path %></li>
+            <li><%= link_to "Users", users_path %></li>
+            <li><%= link_to "Sales", "#" %></li>
+          </ul>
+        </nav>
+         <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Log out #{current_user.name.split(' ').first.capitalize}", logout_path, method: :delete %></li>
+          </ul>
+        </nav>
+      <% end %>
+    </div>
+    </header>
+    <div class="container">
+      <%= yield %>
+      <%= debug(params) if Rails.env.development? %>
+    </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<h1>Supplies</h1>
+
+<% if flash[:errors] && flash[:errors].any? %>
+	<div class="row">
+	  <div id="error_explanation">
+	    <h2>
+	      <%= pluralize(flash[:errors].count, "error") %>
+	    </h2>
+	    <ul>
+	      <% flash[:errors].each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	    </ul>
+	  </div>
+  </div>
+<% end %>
+
+<div class="row">
+	<div class="col-lg-12">
+		<%= link_to 'New Supply', new_supply_path, class: 'btn btn-primary' %>
+	</div>
+</div>
+<div class="row">
+	&nbsp;
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<table class="table table-striped">
+			<tr>
+					<th>Name</th>
+					<th>Price</th>
+					<th>Stock</th>
+					<th>&nbsp;</th>
+			</tr>
+			<% @supplies.each do |supply| %>
+			<tr>
+				<td>
+					<%= supply.name %>
+				</td>
+				<td>
+					<%= supply.price %>
+				</td>
+				<td>
+					<%= supply.stock %>&nbsp;<%= supply.unity %>
+				</td>
+				<td>
+					<%= link_to "Show", supply_path(supply), class: 'btn btn-default btn-xs' %>
+					<%= link_to "Edit", edit_supply_path(supply), class: 'btn btn-default btn-xs' %>
+					<%= link_to "Remove", supply_path(supply),
+						method: :delete, class: 'btn btn-default btn-xs',
+						data: { confirm: 'Are you sure?' } %>
+				</td>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+</div>
+
+

@@ -1,0 +1,177 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 375.0,
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: Install Package",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 579.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Volumes/Encrypted/Workspaces/rb-projects/cloudpos/app/controllers/products_controller.rb",
+		"/Volumes/Encrypted/Workspaces/rb-projects/cloudpos/db/schema.rb",
+		"/Volumes/Encrypted/Workspaces/rb-projects/cloudpos/db/development.sqlite3",
+		"/Volumes/Encrypted/Workspaces/rb-projects/cloudpos/app/models/product.rb",
+		"/Volumes/Encrypted/Workspaces/rb-projects/cloudpos/app/controllers/welcome_controller.rb",
+		"/Volumes/Encrypted/Workspaces/rb-projects/cloudpos/app/models/category.rb",
+		"/Volumes/Encrypted/Workspaces/rb-projects/cloudpos/app/models/retail_option.rb",
+		"/Volumes/Encrypted/Workspaces/rb-projects/cloudpos/app/models/composition.rb",
+		"/Volumes/Encrypted/Workspaces/rb-projects/cloudpos/app/models/supply.rb",
+		"/Volumes/Encrypted/Workspaces/rb-projects/cloudpos/db/migrate/20151121220920_create_retail_options.rb",
+		"/Volumes/Encrypted/Workspaces/rb-projects/cloudpos/db/migrate/20151121220827_create_categories.rb",
+		"/Volumes/Encrypted/Workspaces/rb-projects/cloudpos/app/views/layouts/application.html.erb",
+		"/Volumes/Encrypted/Workspaces/rb-projects/cloudpos/app/controllers/application_controller.rb",
+		"/Volumes/Encrypted/Workspaces/rb-projects/cloudpos/config/environments/development.rb",
+		"/Volumes/Encrypted/Workspaces/rb-projects/cloudpos/config/environments/production.rb",
+		"/Users/jeandre/Library/Application Support/Sublime Text 2/Packages/User/SublimeCodeIntel.sublime-settings",
+		"/Users/jeandre/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/jeandre/Library/Application Support/Sublime Text 2/Packages/User/JSON.sublime-settings",
+		"/Volumes/Encrypted/Workspaces/rb-projects/blog/app/views/articles/_form.html.erb",
+		"/Volumes/Encrypted/Workspaces/rb-projects/blog/app/views/welcome/index.html.erb",
+		"/Volumes/Encrypted/Workspaces/rb-projects/blog/app/views/articles/index.html.erb",
+		"/Volumes/Encrypted/Workspaces/rb-projects/blog/app/controllers/application_controller.rb",
+		"/Volumes/Encrypted/Workspaces/rb-projects/blog/config/boot.rb",
+		"/Volumes/Encrypted/Workspaces/rb-projects/blog/app/controllers/welcome_controller.rb",
+		"/Volumes/Encrypted/Workspaces/rb-projects/blog/app/views/layouts/application.html.erb",
+		"/Volumes/Encrypted/Workspaces/rb-projects/blog/app/helpers/application_helper.rb",
+		"/Volumes/Encrypted/Workspaces/rb-projects/blog/app/controllers/concerns/.keep",
+		"/Volumes/Encrypted/Workspaces/rb-projects/blog/config/application.rb"
+	],
+	"find":
+	{
+		"height": 37.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			">"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 225.0,
+	"status_bar_visible": true
+}

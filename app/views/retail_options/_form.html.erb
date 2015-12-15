@@ -1,0 +1,63 @@
+<% if @retail_option.errors.any? %>
+  <div class="row">
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@retail_option.errors.count, "error") %> prohibited
+        this product from being saved:
+      </h2>
+      <ul>
+        <% @retail_option.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<%= form_for([@product, @retail_option]) do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: "form-control" %>
+  </p>
+  <p>
+    <%= f.label :short_name %><br>
+    <%= f.text_field :short_name, class: "form-control" %>
+  </p>
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_area :description, class: "form-control" %>
+  </p>
+  <p>
+    <%= f.label :price %><br>
+    <%= f.text_field :price, class: "form-control" %>
+  </p>
+  <p>
+    <%= f.label :compositions %><br>
+  </p>
+  <table class="table table-striped">
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>&nbsp;</th>
+    </tr>
+    <% @retail_option.compositions.each do |composition| %>
+      <%= f.fields_for :compositions, composition do |ff| %>
+      <tr>
+        <td>
+          <%= ff.hidden_field :ingredient_id %>
+          <%= ff.label :name, composition.ingredient.supply.name %>
+        </td>
+        <td>
+          <%= ff.text_field :quantity, class: "form-control" %>
+        </td>
+        <td>&nbsp;<%= composition.ingredient.supply.unity %></td>
+      </tr>
+      <% end %>
+    <% end %>
+  </table>
+  <p>
+    <%= link_to "Back", product_path(@product),
+      class: 'btn btn-default' %>
+    <%= f.submit nil, {class: 'btn btn-primary'} %>
+  </p>
+<% end %>

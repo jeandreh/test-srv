@@ -1,0 +1,41 @@
+<% if @supply.errors.any? %>
+  <div class="row">
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@supply.errors.count, "error") %> prohibited
+        this supply from being saved:
+      </h2>
+      <ul>
+        <% @supply.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+<div class="row">
+  <%= form_for @supply do |f| %>
+    <p>
+      <%= f.label :name %><br>
+      <%= f.text_field :name, class: "form-control" %>
+    </p>
+    <p>
+      <%= f.label :price %><br>
+      <%= f.text_field :price, class: "form-control" %>
+    </p>
+    <p>
+      <%= f.label :stock %><br>
+      <%= f.text_field :stock, class: "form-control" %>
+    </p>
+    <p>
+      <%= f.label :unity %><br>
+      <%= f.text_field :unity, class: "form-control" %>
+    </p>
+    <p>
+      <%= link_to "Back", supplies_path,
+        class: 'btn btn-default' %>
+      <%= f.submit nil, {class: 'btn btn-primary'} %>
+    </p>
+  <% end %>
+</div>
+

@@ -1,0 +1,42 @@
+<h1>Category Details</h1>
+
+<% if flash[:errors] && flash[:errors].any? %>
+<div id="error_explanation" class="row">
+  <div class="col-lg-12">
+    <h2>
+      <%= pluralize(flash[:errors].count, "error") %>
+    </h2>
+    <ul>
+      <% flash[:errors].each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<% end %>
+
+<div class="row">
+  <div class="col-lg-12">
+    <strong>Name: </strong> <%= @category.name %>
+  </div>
+</p>
+
+<div class="row">
+  <div class="col-lg-12">
+  	<h2>Description</h2>
+  	<p>
+  		<%= @category.description %>
+  	</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+  	<%= link_to "Back", categories_path, class: 'btn btn-default' %>
+  	<%= link_to "Edit", edit_category_path(@category), class: 'btn btn-primary' %>
+  	<%= link_to "Remove", category_path(@category),
+  				method: :delete,
+          class: 'btn btn-danger',
+  				data: { confirm: 'Are you sure?' } %>
+  </div>
+</div>
