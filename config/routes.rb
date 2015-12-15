@@ -61,10 +61,18 @@ Rails.application.routes.draw do
   #   resources :photos, concerns: :toggleable
 
   # Example resource route within a namespace:
-  namespace :api, defaults: { format: :json },
-                              constraints: { subdomain: 'api' }, path: '/' do
-    # Directs /admin/products/* to Admin::ProductsController
-    # (app/controllers/admin/products_controller.rb)
+  require 'api_constraints'
+
+  namespace :api,
+            defaults: { format: :json },
+            constraints: { subdomain: 'api' },
+            path: '/' do
+    # API versioning
+    scope module: :v1,
+          constraints: ApiConstraints.new(version: 1, default: true) do
+
+    end
+
     # resources :products
   end
 end
