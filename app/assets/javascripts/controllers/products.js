@@ -8,11 +8,11 @@
  * Controller of the cloudPosApp
  */
 angular.module('cloudPosApp')
-  .controller('ProductsCtrl', function ($scope, $modal) {
+  .controller('ProductsCtrl', [ '$scope', '$modal', function ($scope, $modal) {
 
     $scope.categories = [
 	    { name: 'Hot Drinks', ticked: false },
-	    { name: 'Cold Drinks', ticked: false }, 
+	    { name: 'Cold Drinks', ticked: false },
 	    { name: 'Pastry', ticked: false },
 	    { name: 'Favorites', ticked: false }
 	];
@@ -25,8 +25,8 @@ angular.module('cloudPosApp')
 	];
 
     $scope.salesOptions = [
-        { 
-            name: 'Small', 
+        {
+            name: 'Small',
             description: 'Small 50ml Coffee',
             cost: '1.00',
             price: '2.00',
@@ -114,13 +114,13 @@ angular.module('cloudPosApp')
         }
         else {
             // TODO error message
-        }   
+        }
     };
 
     $scope.addOption = function (option) {
         $scope.salesOptions.push(option);
     	// hide modal
-    	ingredientModal.hide();	
+    	ingredientModal.hide();
     };
 
-  });
+  }]);

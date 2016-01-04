@@ -20,7 +20,7 @@ angular
     'templates',
     'mgcrea.ngStrap'
   ])
-  .config(function ($routeProvider) {
+  .config([ '$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'main.html',
@@ -45,4 +45,4 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  });
+  }]);
