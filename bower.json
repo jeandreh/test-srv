@@ -1,0 +1,39 @@
+{
+  "name": "cloud-pos",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "~1.2.0",
+    "json3": "~3.3.1",
+    "es5-shim": "~3.1.0",
+    "bootstrap-sass-official": "~3.2.0",
+    "angular-resource": "~1.2.0",
+    "angular-cookies": "~1.2.0",
+    "angular-sanitize": "~1.2.0",
+    "angular-animate": "~1.2.0",
+    "angular-touch": "~1.2.0",
+    "angular-route": "~1.2.0",
+    "angular-multi-select": "~3.0.0",
+    "angular-strap": "~2.3.3"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.2.0",
+    "angular-scenario": "~1.2.0"
+  },
+  "appPath": "app",
+  "resolutions": {
+    "angular-multi-select": "~4.0.0"
+  }
+  // "lib": {
+  //   "name": "bower-rails generated lib assets",
+  //   "dependencies": {
+  //     // "threex"      : "git@github.com:rharriso/threex.git",
+  //     // "gsvpano.js"  : "https://github.com/rharriso/GSVPano.js/blob/master/src/GSVPano.js"
+  //   }
+  // },
+  // "vendor": {
+  //   "name": "bower-rails generated vendor assets",
+  //   "dependencies": {
+  //     // "three.js"    : "https://raw.github.com/mrdoob/three.js/master/build/three.js"
+  //   }
+  // }
+}
