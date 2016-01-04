@@ -22,10 +22,7 @@ test:
 
 production:
   adapter: postgresql
-  host: heroku-postgres-d268b1fd.herokuapp.com
-  port: 5432
+  encode: unicode
+  url: <%= ENV['DATABASE_URL'] %>
   pool: 5
   timeout: 5000
-  database: d43e3otak7e6eo
-  username: qdesnrkfxdzfhm
-  password: PeppNgz_Uyb5iOKQOU0dT5VUzX
