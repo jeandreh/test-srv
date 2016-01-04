@@ -12,5 +12,16 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require angular/angular
+//= require angular-route/angular-route
+//= require angular-animate/angular-animate
+//= require angular-rails-templates
+//= require angular-cookies/angular-cookies
+//= require angular-multi-select/isteven-multi-select
+//= require angular-resource/angular-resource
+//= require angular-sanitize/angular-sanitize
+//= require angular-strap/dist/angular-strap
+//= require angular-touch/angular-touch
+//= require es5-shim/es5-shim
+//= require json3/lib/json3
 //= require_tree .

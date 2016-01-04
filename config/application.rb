@@ -20,8 +20,16 @@ module Cloudpos
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    # angular-rails-templates custom config
+    config.angular_templates.ignore_prefix  = %w(views/)
+
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Compatibility with Bower as the front-end package manager
+    config.assets.paths << Rails.root.join("vendor","assets","bower_components")
+    config.assets.paths << Rails.root.join("vendor","assets","bower_components","bootstrap-sass-official","assets","fonts")
+    config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff|woff2)$)
 
     # don't generate RSpec tests for views and helpers
     config.generators do |g|

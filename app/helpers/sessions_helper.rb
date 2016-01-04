@@ -21,7 +21,7 @@ module SessionsHelper
   end
 
   # REST API authentication
-  def authenticate_by_token
+  def authenticate_with_token
     request_owner = User.find_by(auth_token: request.headers['Authorization'])
     unless request_owner.nil?
       log_in request_owner

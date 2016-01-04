@@ -14,7 +14,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 # Use Bootstrap Sass Gem
-gem 'bootstrap-sass', '~> 3.2.0'
+# gem 'bootstrap-sass', '~> 3.2.0' # This package is being managed by bower
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -29,6 +29,14 @@ gem 'bcrypt', '~> 3.1.7'
 # Class level respond_to method
 gem 'responders', '~> 2.0'
 
+# Package to integrate Bower to Rails Pipeline
+gem 'bower-rails'
+# Prepopulates angular cache with templates named according to angular standard
+gem 'angular-rails-templates'
+
+gem "foreman"
+
+#gem 'sprockets', '~> 2.0'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -45,6 +53,9 @@ group :test do
 	gem "rspec-rails", "~> 2.14"
   gem "factory_girl_rails"
   gem 'ffaker'
+  gem "capybara"
+	gem "database_cleaner"
+	gem "selenium-webdriver"
 end
 
 
@@ -56,3 +67,8 @@ group :development do
   gem 'spring'
 end
 
+group :production, :staging do
+  gem "rails_12factor"
+  gem "rails_stdout_logging"
+  gem "rails_serve_static_assets"
+end
