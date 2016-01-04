@@ -3,8 +3,6 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -47,6 +45,8 @@ gem "foreman"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  # Use sqlite3 as the database for Active Record in dev environment
+  gem 'sqlite3'
 end
 
 group :test do
@@ -58,7 +58,6 @@ group :test do
 	gem "selenium-webdriver"
 end
 
-
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
@@ -68,6 +67,8 @@ group :development do
 end
 
 group :production, :staging do
+  # Use postgres as the database for Active Record in production environment
+  gem 'pg'
   gem "rails_12factor"
   gem "rails_stdout_logging"
   gem "rails_serve_static_assets"
