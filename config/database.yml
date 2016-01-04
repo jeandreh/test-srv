@@ -9,18 +9,6 @@ default: &default
   pool: 5
   timeout: 5000
 
-# PostgreSQL
-#   gem install pg
-#
-#   Ensure the PostgreSQL gem is defined in your Gemfile
-#   gem 'pg'
-#
-postgresql:
-	adapter: postgresql
-  host: localhost
-  pool: 5
-  timeout: 5000
-
 development:
   <<: *default
   database: db/development.sqlite3
@@ -33,7 +21,10 @@ test:
   database: db/test.sqlite3
 
 production:
-	<<: *postgresql
+  adapter: postgresql
+  host: localhost
+  pool: 5
+  timeout: 5000
   database: d43e3otak7e6eo
   username: qdesnrkfxdzfhm
   password: PeppNgz_Uyb5iOKQOU0dT5VUzX
