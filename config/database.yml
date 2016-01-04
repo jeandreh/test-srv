@@ -22,7 +22,8 @@ test:
 
 production:
   adapter: postgresql
-  host: localhost
+  host: heroku-postgres-d268b1fd.herokuapp.com
+  port: 5432
   pool: 5
   timeout: 5000
   database: d43e3otak7e6eo
