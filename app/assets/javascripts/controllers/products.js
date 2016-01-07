@@ -8,82 +8,143 @@
  * Controller of the cloudPosApp
  */
 angular.module('cloudPosApp')
-  .controller('ProductsCtrl', [ '$scope', '$modal', function ($scope, $modal) {
+  .controller('ProductsCtrl', [
+    '$scope', '$modal', '$routeParams', '$location', 'productSvc',
+    function ($scope, $modal, $routeParams, $location, productSvc) {
 
-    $scope.categories = [
-	    { name: 'Hot Drinks', ticked: false },
-	    { name: 'Cold Drinks', ticked: false },
-	    { name: 'Pastry', ticked: false },
-	    { name: 'Favorites', ticked: false }
-	];
-
-	$scope.ingredients = [
-	    { name: 'Coffee', ticked: true },
-	    { name: 'Milk', ticked: true},
-	    { name: 'Suggar', ticked: true },
-	    { name: 'Chocolate Powder', ticked: false }
-	];
-
-    $scope.salesOptions = [
-        {
-            name: 'Small',
-            description: 'Small 50ml Coffee',
-            cost: '1.00',
-            price: '2.00',
-            composition: ['0.2', '0.1', '0.2']
-        }
+    $scope.categories = [ //TODO get from server through productSvc
+        { "id": 1, "name": "Hot Drinks" },
+        { "id": 2, "name": "Cold Drinks" },
+        { "id": 3, "name": "Favorites" },
+        { "id": 4, "name": "Pastry" }
     ];
 
-	$scope.categoriesLocalLang = {
-	    selectAll       : 'Select All',
-	    selectNone      : 'Clear All',
-	    reset           : 'Reset',
-	    search          : 'Search...',
-	    nothingSelected : 'Categories...'
-	};
+    $scope.ingredients = [ //TODO get from server through productSvc
+        { "id": 1, "name": 'Coffee', "unity":"kg" },
+        { "id": 2, "name": 'Milk', "unity":"l"},
+        { "id": 3, "name": 'Suggar', "unity":"kg" },
+        { "id": 4, "name": 'Chocolate Powder', "unity":"kg"}
+    ];
 
-	$scope.ingredientsLocalLang = {
-	    selectAll       : 'Select All',
-	    selectNone      : 'Clear All',
-	    reset           : 'Reset',
-	    search          : 'Search...',
-	    nothingSelected : 'Ingredients...'
-	};
+    $scope.selectedIngredients = [];
 
-	$scope.selectedIngredients = [];
+    $scope.selectedCategories = [];
 
-	var ingredientModal = $modal({
+    $scope.categoriesLocalLang = {
+        selectAll       : 'Select All',
+        selectNone      : 'Clear All',
+        reset           : 'Reset',
+        search          : 'Search...',
+        nothingSelected : 'Categories...'
+    };
+
+    $scope.ingredientsLocalLang = {
+        selectAll       : 'Select All',
+        selectNone      : 'Clear All',
+        reset           : 'Reset',
+        search          : 'Search...',
+        nothingSelected : 'Ingredients...'
+    };
+
+    var ingredientModal = $modal({
         scope: $scope,
-        templateUrl: 'views/templates/ingredient-modal.html',
+        templateUrl: "templates/ingredient-modal.html",
         show: false
     });
 
     var optionModal = $modal({
         scope: $scope,
-        templateUrl: 'views/templates/option-modal.html',
+        templateUrl: "templates/option-modal.html",
         show: false
     });
 
-    function saveSelectedIngredients() {
-    	for (var i = 0; i < $scope.selectedIngredients.length; i++) {
-    		var tempIngredient = $scope.selectedIngredients[i];
-    		for (var j = 0; j < $scope.ingredients.length; j++) {
-    			if (tempIngredient.name === $scope.ingredients[j].name) {
-    				$scope.ingredients[j].ticked = true;
-    			}
-    		}
-    	}
+    if ($location.path().indexOf('/new') != -1) {
+        handleProductCreation();
+    }
+    else if ($routeParams['id'] != null) {
+        handleProductUpdate($routeParams['id']);
+    }
+    else {
+        handleError();
     }
 
-    function isExistent(ingred) {
-    	var order = 0; // non existent
-    	for (var i = 0; i < $scope.ingredients.length; i++) {
-    		if ($scope.ingredients[i].name === ingred.name) {
-    			order = i + 1; // order of the ingredient in the list
-    		}
-    	}
-    	return order;
+    function handleProductCreation() {
+        $scope.product = {
+            "name": null,
+            "image_url": "http://www.placehold.it/150x150/EFEFEF/AAAAAA&amp;text=add+image",
+            "retail_options": [],
+            "categories": [],
+            "supplies": []
+        };
     }
+
+    function handleProductUpdate(id) {
+        var promise = productSvc.fetch(id);
+        promise.then(
+            function(response) {
+                $scope.product = response.data;
+                tickCategories();
+                tickIngredients();
+            },
+            function(response) {
+                console.log(response.data);
+            }
+        );
+    }
+
+    function handleError() {
+        console.log("Invalid Request");
+        console.log($location);
+        console.log($routeParams);
+    }
+
+    function tickCategories() {
+        execOnMatch(
+            $scope.categories,'name',
+            $scope.product.categories, 'name',
+            function(match) {
+                match.ticked = true;
+            }
+        );
+    }
+
+    function tickIngredients() {
+        execOnMatch(
+            $scope.ingredients, 'name',
+            $scope.product.supplies, 'name',
+            function(match) {
+                match.ticked = true;
+            }
+        );
+    }
+
+    function saveSelectedIngredients() {
+        execOnMatch(
+            $scope.ingredients, 'name',
+            $scope.selectedIngredients, 'name',
+            function(match) {
+                match.ticked = true;
+            }
+        );
+    	// for (var i = 0; i < $scope.selectedIngredients.length; i++) {
+    	// 	var tempIngredient = $scope.selectedIngredients[i];
+    	// 	for (var j = 0; j < $scope.ingredients.length; j++) {
+    	// 		if (tempIngredient.name === $scope.ingredients[j].name) {
+    	// 			$scope.ingredients[j].ticked = true;
+    	// 		}
+    	// 	}
+    	// }
+    }
+
+    // function isExistent(ingred) {
+    // 	var order = 0; // non existent
+    // 	for (var i = 0; i < $scope.ingredients.length; i++) {
+    // 		if ($scope.ingredients[i].name === ingred.name) {
+    // 			order = i + 1; // order of the ingredient in the list
+    // 		}
+    // 	}
+    // 	return order;
+    // }
 
     $scope.showIngredientModal = function () {
     	saveSelectedIngredients();
@@ -95,17 +156,27 @@ angular.module('cloudPosApp')
         optionModal.$promise.then(optionModal.show);
     };
 
+  //   $scope.deselectIngredient = function (index, ingred) {
+		// $scope.selectedIngredients.splice(index,1);
+		// var order = isExistent(ingred);
+		// if (order) {
+		// 	$scope.ingredients[order - 1].ticked = false;
+		// }
+		// saveSelectedIngredients();
+  //   };
+
     $scope.deselectIngredient = function (index, ingred) {
-		$scope.selectedIngredients.splice(index,1);
-		var order = isExistent(ingred);
-		if (order) {
-			$scope.ingredients[order - 1].ticked = false;
-		}
-		saveSelectedIngredients();
+        $scope.selectedIngredients.splice(index,1);
+        _.map($scope.ingredients, function(item) {
+            if (item.name === ingred.name) {
+                item.ticked = false;
+            }
+        });
+        saveSelectedIngredients();
     };
 
     $scope.addIngredient = function (ingred) {
-        if (!isExistent(ingred)) {
+        if (!_.findWhere($scope.ingredients, { "name": ingred.name })) {
             // add ingredient to ingredients list
             ingred.ticked = true;
             $scope.ingredients.push(ingred);
@@ -113,14 +184,25 @@ angular.module('cloudPosApp')
             ingredientModal.hide();
         }
         else {
-            // TODO error message
+            // TODO handle error message
         }
     };
 
     $scope.addOption = function (option) {
-        $scope.salesOptions.push(option);
-    	// hide modal
-    	ingredientModal.hide();
+        if (!_.findWhere($scope.product.retail_options, { "name": option.name })) {
+            $scope.product.retail_options.push(option);
+            // hide modal
+            optionModal.hide();
+        }
+        else {
+            // TODO handle error message
+        }
     };
+
+    $scope.saveProduct = function() {
+        $scope.product.supplies = $scope.selectedIngredients;
+        $scope.product.categories = $scope.selectedCategories;
+        console.log($scope.product);
+    }
 
   }]);

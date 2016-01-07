@@ -23,7 +23,7 @@ class Api::V1::ProductsController < ApplicationController
             location: [:api, user]
 	  else
 	  	render json: { erros: "Invalid parameters" },
-	    			status: 200, location: [:api, user]
+	    			status: 422
 	  end
   end
 

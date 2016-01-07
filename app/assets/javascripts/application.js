@@ -22,6 +22,10 @@
 //= require angular-sanitize/angular-sanitize
 //= require angular-strap/dist/angular-strap
 //= require angular-touch/angular-touch
+//= require angular-messages/angular-messages.min
+//= require ng-flow/dist/ng-flow-standalone.min
 //= require es5-shim/es5-shim
 //= require json3/lib/json3
+//= require underscore/underscore-min
 //= require_tree .
+

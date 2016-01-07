@@ -10,7 +10,7 @@
 angular.module('cloudPosApp')
   .controller('SalesCtrl', [ '$scope', 'productSvc', function ($scope, productSvc) {
 
-  var promise = productSvc.fetch();
+  var promise = productSvc.fetchAll();
 
   promise.then(
   	function(response) {

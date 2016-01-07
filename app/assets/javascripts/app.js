@@ -17,8 +17,10 @@ angular
     'ngSanitize',
     'isteven-multi-select',
     'ngTouch',
+    'ngMessages',
     'templates',
-    'mgcrea.ngStrap'
+    'mgcrea.ngStrap',
+    'flow'
   ])
   .config([ '$routeProvider', function ($routeProvider) {
     $routeProvider

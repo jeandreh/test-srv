@@ -10,15 +10,28 @@
 angular.module('cloudPosApp')
   .factory('productSvc', [ '$http', '$q', function ($http, $q) {
 
-  	var prodSvc = {};
+	return {
 
-  	prodSvc.server_base_url = 'http://localhost:3000/api';
+		server_end_point: 'http://localhost:3000/api/products',
 
-  	prodSvc.fetch = function() {
-  		return $http.get(this.server_base_url + '/products');
-   	};
+		fetchAll: function() {
+			var url = this.server_end_point;
+			return $http.get(url);
+ 		},
+ 		fetch: function(id) {
+			var url = this.server_end_point + '/' + id;
+			return $http.get(url);
+ 		},
+ 		create: function(product) {
+			var url = this.server_end_point;
+			return $http.post(url, product);
+ 		},
+   	update: function(product) {
+  		var url = this.server_end_point + '/' + product.id;
+  		return $http.put(url, product);
+   	}
 
-   	return prodSvc;
+	};
 
   	// function saveInLocalStorage(prodList) {
    //  	localStorage['cloudPosApp.productList'] = JSON.stringify(prodList);
