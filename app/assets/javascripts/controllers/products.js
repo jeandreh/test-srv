@@ -206,3 +206,38 @@ angular.module('cloudPosApp')
     }
 
   }]);
+
+// $scope.product =
+// {
+//     "id": 1,
+//     "name": "Black Coffee",
+//     "image_url": "/imgs/black_coffee.jpg",
+//     "retail_options": [
+//         {
+//             "id": 1,
+//             "name":"Large",
+//             "short_name":"L",
+//             "description":"Large black coffee (250 ml)",
+//             "price":4.0
+//         }
+//     ],
+//     "categories": [
+//         {
+//             "id":1,
+//             "name": "Hot Drinks",
+//             "description":"Try our delicious Coffees and Teas"
+//         },
+//         {
+//             "id":3,
+//             "name":"Favorites",
+//             "description":"Bestseller products"
+//         }
+//     ],
+//     "supplies":[
+//         {
+//             "id":1,
+//             "name":"Coffee Beans",
+//             "unity":"kg"
+//         }
+//     ]
+// };
